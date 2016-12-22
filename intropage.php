@@ -15,15 +15,9 @@
 <body>
 	<div id="welcome">
 	<h2>Добро пожаловать, <span><?php echo $_SESSION['session_username'];?>! </span></h2>
-  	<p class="submit"><input class="button" value="Изменить пароль" onClick='location.href="pass.php"'></p>
+  	<p class="submit"><input class="button" value="Информация о себе" onClick='location.href="about.php"'></p>
   	<p><a href="logout.php">Выйти</a> из системы</p>
 	</div>
-     <input class="button" id="about" type= "submit" value="О программе">
-     <script>
-        document.getElementById('about').onclick = function() {
-        alert("Программа сделана Андреем Малининым, 13 вариант, 1 лаба по токб")
-        }
-    </script>
 </body>
 </html>
 	

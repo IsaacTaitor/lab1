@@ -47,16 +47,10 @@
     echo '</table>'; ?>
         <p class="submit" ><input class="button" value="Изменить пароль" onClick='location.href="passadmin.php"'></p><br>
         <p class="submit"><input class="button" value="Управление пользователями" onClick='location.href="controluser.php"'></p><br>
-        <p class="submit"><input class="button" value="Создание пользователя" onClick='location.href="createclient.php"'></p><br>
-        <p class="submit"><input class="button" value="Удаление пользователя" onClick='location.href="deleteclient.php"'> </p>
+        <p class="submit"><input class="button" value="Создание пользователя" onClick='location.href="createclient.php"'></p>
+        <p class="submit" style="padding-top: 37px"><input class="button" value="Удаление пользователя" onClick='location.href="deleteclient.php"'> </p>
         <p><a href="logout.php">Выйти</a> из системы</p>
 	</div>
-     <input class="button" id="about" type= "submit" value="О программе">
-     <script>
-        document.getElementById('about').onclick = function() {
-        alert("Программа сделана Андреем Малининым, 13 вариант, 1 лаба по токб")
-        }
-    </script>
 </body>
 </html>
 	

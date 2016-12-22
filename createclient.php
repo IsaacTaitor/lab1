@@ -18,51 +18,27 @@
 	
 	if (isset($_POST["register"])) {
 	
-        if (!empty(trim($_POST['username'])) && !empty($_POST['password']) && !empty($_POST['role'])) { 
-            $username = trim(htmlspecialchars($_POST['username']));
-            
-            $password = htmlspecialchars($_POST['password']);
-            $role = ($_POST['role']);
-            $block = ($_POST['block']);
-            $restrictions = ($_POST['restrictions']);
-            if ($restrictions == 1) {
-                if ((preg_match('/[a-zа-я]/',$password)) && (preg_match('/[A-ZА-Я]/',$password)) && (preg_match('/[^a-zA-Z0-9]/',$password))) {
-                    $query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
-                    $numrows = mysqli_num_rows($query);
-                    if ($numrows == 0) {
-                        $sql = "INSERT INTO usertbl (username,password,role, block, restrictions) VALUES ('".$username."', '".$password."', '".$role."', '".$block."', '".$restrictions."')";
-                        $result = mysqli_query($con, $sql);
-                        if ($result) {
-                            $message = "Пользователь успешно создан";
-                        } else {
-                            $message = "Произошла ошибка при создании пользователя";
-                        }
-                    } else {
-                        $message = "Пользователь с данным именем уже существует";
-                    } 
-                }
-                else {
-                    $message = "Пароль не может быть создан при заданных условиях";
-                }
-            } else {
-                $query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
-                $numrows = mysqli_num_rows($query);
-                if ($numrows == 0) {
-                    $sql = "INSERT INTO usertbl (username,password,role, block, restrictions) VALUES ('".$username."', '".$password."', '".$role."', '".$block."', '".$restrictions."')";
-                    $result = mysqli_query($con, $sql);
-                    if ($result) {
-                        $message = "Пользователь успешно создан";
-                    } else {
-                        $message = "Произошла ошибка при создании пользователя";
-                    }
-                } else {
-                    $message = "Пользователь с данным именем уже существует";
-                }    
-            }
-        } else {
-            $message = "Нельзя создать пустого пользователя";
-        } 
-    }
+	if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['role'])) {
+			$username = htmlspecialchars($_POST['username']);
+			$password = htmlspecialchars($_POST['password']);
+			$role = ($_POST['role']);
+			$block = ($_POST['block']);
+			$restrictions = ($_POST['restrictions']);
+			$query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
+			$numrows = mysqli_num_rows($query);
+			if ($numrows == 0) {
+				$sql = "INSERT INTO usertbl (username,password,role, block, restrictions) VALUES ('".$username."', '".$password."', '".$role."', '".$block."', '".$restrictions."')";
+  				$result = mysqli_query($con, $sql);
+ 				if ($result) {
+					$message = "Пользователь успешно создан";
+				} else {
+ 					$message = "Произошла ошибка при создании пользователя";
+  				}
+			} else {
+			$message = "Пользователь с данным именем уже существует";
+			} 
+   		}
+	}
 	?>
 	
 	<?php if (!empty($message)) { echo "<p class=\"error\">" . $message . "</p>";} ?>
@@ -93,12 +69,6 @@
  			<p class="submit"><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="intropageadmin.php"' value="Назад"></p>
 		</div>
 	</div>
-     <input class="button" id="about" type= "submit" value="О программе">
-     <script>
-        document.getElementById('about').onclick = function() {
-        alert("Программа сделана Андреем Малининым, 13 вариант, 1 лаба по токб")
-        }
-    </script>
 </body>
 </html>
 

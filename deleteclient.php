@@ -19,12 +19,10 @@
 	if (isset($_POST["register"])) {
 	
 		if (!empty($_POST['username'])) {
-            $username = trim(htmlspecialchars($_POST['username']));
-            $query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
-            $row = mysqli_fetch_assoc($query);
-            $numrows = mysqli_num_rows($query);
-            $dbid = $row['id'];
-            if ($dbid != 1) { 
+            $username = htmlspecialchars($_POST['username']);
+            if ($username != "admin")  {
+                $query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
+                $numrows = mysqli_num_rows($query);
                 if ($numrows != 0) {
                     $sql = "DELETE FROM usertbl WHERE username='".$username."'";
                     $result = mysqli_query($con, $sql);
@@ -36,13 +34,11 @@
                 } else {
                     $message = "Данного пользователя не существует";
                 }
-            } else {
-                $message = "Данного пользователя нельзя удалить";
             }
-        }
-        else {
-            $message = "Введите данные";  
-        }
+            else {
+                $message = "Данного пользователя нельзя удалить";  
+            }
+        }   
     }
 	?>
 	
@@ -58,12 +54,6 @@
  			<p class="submit"><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="intropageadmin.php"' value="Назад"></p>
 		</div>
 	</div>
-     <input class="button" id="about" type= "submit" value="О программе">
-     <script>
-        document.getElementById('about').onclick = function() {
-        alert("Программа сделана Андреем Малининым, 13 вариант, 1 лаба по токб")
-        }
-    </script>
 </body>
 </html>
 

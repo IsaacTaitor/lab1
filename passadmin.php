@@ -19,28 +19,14 @@
 	if (isset($_POST["register"])) {
 	
 		if (!empty($_POST['password'])) {
-            $password = htmlspecialchars($_POST['password']);
-            $username = $_SESSION["session_username"];
-            $query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
-            $row = mysqli_fetch_assoc($query);
-            $dbrestrictions = $row['restrictions'];
-            if ($dbrestrictions == 1) {
-                if ((preg_match('/[a-zа-я]/',$password)) && (preg_match('/[A-ZА-Я]/',$password)) && (preg_match('/[^a-zа-яA-ZА-Я0-9]/',$password))) {
-                    $username = $_SESSION["session_username"];
-                    $query = mysqli_query($con,  "UPDATE usertbl SET password = '".$password."' WHERE username = '".$username."';");
-                    $message = "Данные успешно изменены";
-                } else {
-                    $message = "Данный пароль не подходит";
-                }
-            } else {
-                $username = $_SESSION["session_username"];
-                $query = mysqli_query($con,  "UPDATE usertbl SET password = '".$password."' WHERE username = '".$username."';");
-                $message = "Данные успешно изменены";
-            }  
-        } else {
-            $message = "Не все поля заполнены!";
-        }
-    }
+			$password = htmlspecialchars($_POST['password']);
+			$username = $_SESSION["session_username"];
+			$query = mysqli_query($con,  "UPDATE usertbl SET password = '".$password."' WHERE username = '".$username."';");
+				$message = "Данные успешно изменены";
+			} else {
+				$message = "Не все поля заполнены!";
+			}
+		}
 	?>
 	<?php if (!empty($message)) { echo "<p class=\"error\">" . $message . "</p>";} ?>
 	<div class="container mregister">
@@ -51,15 +37,9 @@
 					<input class="input" id="password" name="password" size="32"   type="password" value="" required></label></p>
 				<p class="submit"><input class="button" id="register" name= "register" type="submit" value="Изменить"></p>
  			</form>
- 			<p class="submit"><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="intropageadmin.php"' value="Назад"></p>
+ 			<p class="submit""><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="intropageadmin.php"' value="Назад"></p>
 		</div>
 	</div>
-     <input class="button" id="about" type= "submit" value="О программе">
-     <script>
-        document.getElementById('about').onclick = function() {
-        alert("Программа сделана Андреем Малининым, 13 вариант, 1 лаба по токб")
-        }
-    </script>
 </body>
 </html>
 

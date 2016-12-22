@@ -1,28 +1,55 @@
 /*= ОБЩИЕ СТИЛИ
 	--------------------------------------------------------*/
-	body {
-   background: #efefef;
-   font-family: 'Open Sans', sans-serif;
-   color: #777;
-	}
+body {
+    background: #efefef;
+    font-family: 'Open Sans', sans-serif;
+    color: #777;
+}
 
-	a {
-   color: #f58220;
- font-weight: 400;
-	}
-	
-	span {
-   font-weight: 300;
-   color: #f58220;
-	}
+a {
+    color: #f58220;
+    font-weight: 400;
+}
 
-	.mlogin {
-   margin: 170px auto 0;
-	}
+span {
+    font-weight: 300;
+    color: #f58220;
+}
 
-	.mregister {
-  margin: 80px auto 0;
-	}
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    background: white;
+    max-width: 70%;
+    width: 70%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    font-weight: normal;
+    color: #039;
+    border-bottom: 2px solid #6678b1;
+    padding: 10px 8px;
+}
+
+td {
+    color: #669;
+    padding: 9px 8px;
+    transition: .3s linear;
+}
+
+tr:hover td{
+    color: #6699ff;
+}
+
+.mlogin {
+    margin: 170px auto 0;
+}
+
+.mregister {
+    margin: 80px auto 0;
+}
 
 	.error {
    margin: 40px auto 0;
@@ -53,38 +80,9 @@
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.13);
 	box-shadow: 0 1px 3px rgba(0,0,0,.13);
 	}
-
-  
-table {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-  border-collapse: collapse;
-  color: #686461;
-}
-caption {
-  padding: 10px;
-  color: white;
-  background: #8FD4C1;
-  font-size: 18px;
-  text-align: left;
-  font-weight: bold;
-}
-th {
-  border-bottom: 3px solid #B9B29F;
-  padding: 10px;
-  text-align: left;
-}
-td {
-  padding: 10px;
-}
-tr:nth-child(odd) {
-  background: white;
-}
-tr:nth-child(even) {
-  background: #E8E6D1;
-}
 	
 	#welcome {
-	width: 500px;
+	width: 700px;
 	padding: 30px;
 	background: #fff;
 	margin: 160px auto 0;
@@ -106,8 +104,8 @@ tr:nth-child(even) {
 	font-size: 14px;
 	}
 
-	#login {
-  width: 320px;
+#login {
+    width: 350px;
 	margin: auto;
 	padding-bottom: 15px;
 	}
