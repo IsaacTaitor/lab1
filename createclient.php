@@ -27,7 +27,7 @@
 			$query = mysqli_query($con, "SELECT * FROM usertbl WHERE username='".$username."'");
 			$numrows = mysqli_num_rows($query);
 			if ($numrows == 0) {
-				$sql = "UPDATE money SET password = '".$password."' WHERE id = '".$username."';";
+				$sql = "INSERT INTO usertbl (username,password,role, block, restrictions) VALUES ('".$username."', '".$password."', '".$role."', '".$block."', '".$restrictions."')";
   				$result = mysqli_query($con, $sql);
  				if ($result) {
 					$message = "Пользователь успешно создан";

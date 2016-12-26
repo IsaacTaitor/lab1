@@ -23,8 +23,7 @@
 		if (!empty($_POST['email']) && !empty($_POST['password'])) {
 			$useremail = htmlspecialchars($_POST['email']);
             $password = htmlspecialchars($_POST['password']);
-            $password = crypt($password, "kyrsach");
-            $query = mysqli_query($con, "SELECT * FROM login WHERE email='".$useremail."' AND password='".$password."'"); //
+            $query = mysqli_query($con, "SELECT * FROM login WHERE email='".$useremail."' AND password='".$password."'");
             $numrows = mysqli_num_rows($query);
             if ($numrows != 0) {
                 while ($row = mysqli_fetch_assoc($query)) {
@@ -41,7 +40,12 @@
 					$message = "Информация добавлена";
 				} else {
  					$message = "Информация не добавлена";
-  				}						
+  				}
+                    if ($dbuseremail == 'admin') {
+                        header("Location: intropageadmin.php");
+                    } else {
+                        header("Location: intropage.php");
+                    }   						
                 }
             } else { 
                 $message = "Пароль и/или email не верен";
@@ -60,8 +64,7 @@
 					<input class="input" id="email" name="email" size="20" type="text" value="" required></label></p>
 				<p><label for="user_pass">Пароль<br>
  					<input class="input" id="password" name="password" size="20" type="password" value="" required></label></p>
-				<p class="submit"><input class="button" name="login" type= "submit" value="Войти"></p><br>
-                <p class="regtext">Еще не зарегистрированы?<br><a href="register.php">Регистрация</a>!</p>
+				<p class="submit"><input class="button" name="login" type= "submit" value="Войти"></p>
 			</form>
  		</div>
   	</div>
