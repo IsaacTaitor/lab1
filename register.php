@@ -1,8 +1,3 @@
-<?php
-	session_start();
-	if(!isset($_SESSION["session_username"])):;
-	else:
-?>
 <?php require_once('includes/connection.php'); ?>
 
 <!DOCTYPE html>
@@ -18,29 +13,43 @@
 	
 	if (isset($_POST["register"])) {
 	
-		if (!empty($_POST['password'])) {
+	   if (!empty($_POST['name']) && !empty($_POST['password']) && !empty($_POST['email'])) {
+			$username = htmlspecialchars($_POST['name']);
 			$password = htmlspecialchars($_POST['password']);
-			$username = $_SESSION["session_username"];
-			$query = mysqli_query($con,  "UPDATE usertbl SET password = '".$password."' WHERE username = '".$username."';");
-				$message = "Данные успешно изменены";
+            $password = crypt($password, "kyrsach");
+            $email = htmlspecialchars($_POST['email']);
+			$query = mysqli_query($con, "SELECT * FROM login WHERE email='".$email."'");
+			$numrows = mysqli_num_rows($query);
+			if ($numrows == 0) {
+				$sql = "INSERT INTO login (name,password,email) VALUES ('".$username."', '".$password."', '".$email."')";
+  				$result = mysqli_query($con, $sql);
+ 				if ($result) {
+                    
+					$message = "Пользователь успешно создан";
+				} else {
+ 					$message = "Произошла ошибка при создании пользователя";
+  				}
 			} else {
-				$message = "Не все поля заполнены!";
-			}
-		}
+			$message = "Пользователь с данным именем уже существует";
+			} 
+   		}
+	}
 	?>
 	<?php if (!empty($message)) { echo "<p class=\"error\">" . $message . "</p>";} ?>
 	<div class="container mregister">
 		<div id="login">
- 			<h1>Смена пароля</h1>
+ 			<h1>Регистрация</h1>
 			<form action="register.php" id="registerform" method="post" name="registerform">
-				<p><label for="user_pass">Пароль<br>
+				<p><label for="user_email">email<br>
+					<input class="input" id="email" name="email" size="32"   type="email" value="" required></label></p>
+                <p><label for="user_name">Ваше имя<br>
+					<input class="input" id="name" name="name" size="32"   type="name" value="" required></label></p>
+                <p><label for="user_pass">Пароль<br>
 					<input class="input" id="password" name="password" size="32"   type="password" value="" required></label></p>
 				<p class="submit"><input class="button" id="register" name= "register" type="submit" value="Изменить"></p>
  			</form>
- 			<p class="submit"><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="intropage.php"' value="Назад"></p>
+ 			<p class="submit"><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="index.php"' value="Назад"></p>
 		</div>
 	</div>
 </body>
 </html>
-
-<?php endif; ?>
