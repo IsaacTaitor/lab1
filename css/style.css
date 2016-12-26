@@ -17,32 +17,28 @@ span {
 }
 
 table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 14px;
-    background: white;
-    max-width: 70%;
-    width: 70%;
-    border-collapse: collapse;
-    text-align: left;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  border-collapse: collapse;
+  color: #686461;
 }
 
 th {
-    font-weight: normal;
-    color: #039;
-    border-bottom: 2px solid #6678b1;
-    padding: 10px 8px;
+  border-bottom: 3px solid #B9B29F;
+  padding: 10px;
+  text-align: left;
 }
-
 td {
-    color: #669;
-    padding: 9px 8px;
-    transition: .3s linear;
+  padding: 10px;
 }
-
-tr:hover td{
-    color: #6699ff;
+td:nth-child(even) {
+    padding-left: 50%;
 }
-
+tr:nth-child(odd) {
+  background: white;
+}
+tr:nth-child(even) {
+  background: #E8E6D1;
+}
 .mlogin {
     margin: 170px auto 0;
 }

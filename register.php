@@ -22,7 +22,17 @@
 			$numrows = mysqli_num_rows($query);
 			if ($numrows == 0) {
 				$sql = "INSERT INTO login (name,password,email) VALUES ('".$username."', '".$password."', '".$email."')";
-  				$result = mysqli_query($con, $sql);
+                $result = mysqli_query($con, $sql);
+                $query = mysqli_query($con, "SELECT * FROM login WHERE email='".$email."'");
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $dbid = $row['id'];
+                }
+                $sql2 = "INSERT INTO money (id) VALUES ('".$dbid."')";
+                $result3 = mysqli_query($con, $sql2);
+                $sql3 = "INSERT INTO `personal information` (id,registration) VALUES ('".$dbid."', '".date('D M d H:i:s Y \G\M\T\ O (\U\T\C\)', strtotime("+2 hours"))."')";
+                $result3 = mysqli_query($con, $sql3);
+                $sql4 = "INSERT INTO `place of work` (id) VALUES ('".$dbid."')";
+                $result4 = mysqli_query($con, $sql4);
  				if ($result) {
                     
 					$message = "Пользователь успешно создан";
@@ -46,9 +56,9 @@
 					<input class="input" id="name" name="name" size="32"   type="name" value="" required></label></p>
                 <p><label for="user_pass">Пароль<br>
 					<input class="input" id="password" name="password" size="32"   type="password" value="" required></label></p>
-				<p class="submit"><input class="button" id="register" name= "register" type="submit" value="Изменить"></p>
+				<p class="submit"><input class="button" id="register" name= "register" type="submit" value="Зарегистрироваться"></p>
  			</form>
- 			<p class="submit"><input style="margin-right: 130px;" class="button" id="register" size="7" name= "register" onClick='location.href="index.php"' value="Назад"></p>
+ 			<p class="submit"><input style="float:left;" class="button" style="" id="register" size="7" name= "register" onClick='location.href="index.php"' value="Назад"></p>
 		</div>
 	</div>
 </body>

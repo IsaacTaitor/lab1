@@ -1,6 +1,5 @@
 <?php
-	session_start();
-	?>
+	session_start();?>
 <?php require_once('includes/connection.php'); ?>
 
 <!DOCTYPE html>
@@ -14,10 +13,6 @@
 <body>
 	<?php require_once('includes/connection.php'); ?> 
 	<?php
-    
-	if (isset($_SESSION["session_username"])) {
-		header("Location: intropage.php");
-	}
 
 	if (isset($_POST["login"])) {
 		if (!empty($_POST['email']) && !empty($_POST['password'])) {
@@ -33,15 +28,15 @@
                     $username = $row['name'];
                     $_SESSION['id'] = $row['id'];
                 }
-                if ($useremail == $dbuseremail && $password == $dbpassword) {
+                if ($useremail == $dbuseremail && $password == $dbpassword) {//date("D M d H:i:s Y \G\M\T\ O (\U\T\C\)")
                     $_SESSION['session_username'] = $username;
-                    $sql = "INSERT INTO session (id, name, timelogin) VALUES ('".$_SESSION['id']."', '".$username."', '".date('d M Y H:i:s', strtotime("+2 hours"))."')";
+                    $sql = "INSERT INTO session (id, timelogin) VALUES ('".$_SESSION['id']."', '".date('D M d H:i:s Y \G\M\T\ O (\U\T\C\)', strtotime("+2 hours"))."')";
                     $result = mysqli_query($con, $sql);
- 				if ($result) {
-					$message = "Информация добавлена";
-				} else {
- 					$message = "Информация не добавлена";
-  				}						
+                    if ($username == 'admin') {
+                                header("Location: intropageadmin.php");
+                            } else {
+                                header("Location: intropage.php");
+                            } 					
                 }
             } else { 
                 $message = "Пароль и/или email не верен";
