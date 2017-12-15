@@ -1,0 +1,5 @@
+﻿Создать базу данных с именем "kyrsach"
+
+Сама БД - https://drive.google.com/open?id=1OBA_8pPuH0ZFB6qqbMcoVndd8PWiL35o
+
+Админ - "email: admin@1, пароль: qwerty"
